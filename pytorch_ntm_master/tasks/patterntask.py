@@ -16,9 +16,9 @@ def dataloader(num_batches,
                seq_width,
                seq_min_len,
                seq_max_len):
-    """Generator of random sequences for the repeat copy task.
+    """Generator of random and pattern sequences for the repeat copy task.
 
-    Creates random batches of "bits" sequences.
+    Creates random batches of "bits" sequences or in a repating pattern.
 
     All the sequences within each batch have the same length.
     The length is between `min_len` to `max_len`
@@ -30,23 +30,20 @@ def dataloader(num_batches,
     :param seq_max_len: Sequence maximum length.
     
 
-    NOTE: The input width is `seq_width + 2`. One additional input
-    is used for the delimiter, and one for the number of repetitions.
-    The output width is `seq_width` + 1, the additional input is used
-    by the network to generate an end-marker, so we can be sure the
-    network counted correctly.
+    NOTE: The output width is `seq_width` + 1, the additional input is used
+    by the network to label if it is a pattern or a random sequence.
     """
 
 
     for batch_num in range(num_batches):
 
-        # All batches have the same sequence length and number of reps
-        # Having trouble figuring out a way to generate repeating patterns that are randomly generated so I will make it a standard size
-        seq_len = 5# have to set these to have random patterns that match in size previous: random.randint(seq_min_len, seq_max_len)
-        reps = 5# random.randint(repeat_min, repeat_max)
+
+        seq_len = 5# couldnt come up with more than 10 patterns so I will split them in two to shuffle 
+        # them in an attempt to prevent overfitting.. might not make sense
+
 
         # Generate the sequence
-        seq1 = np.random.binomial(1, 0.5, (seq_len, batch_size, seq_width)) #output shape random sequence
+        seq1 = np.random.binomial(1, 0.5, (seq_len, batch_size, seq_width)) # random sequence
         # repeating patterns trying to get all teh bases for 8 integers.. most likely missed a few 
         seq2 = np.array([[[1, 1, 1, 1, 1, 1, 1, 1]], [[1, 1, 1, 1, 0, 0, 0, 0]], [[1, 0, 1, 0, 1, 0, 1, 0]], [[0, 0, 0, 0, 0, 0, 0, 0]], [[0, 1, 0, 1, 0, 1, 0, 1]]]) 
         seq3 = np.array([[[1, 1, 1, 0, 1, 1, 1, 0]], [[0, 0, 1, 1, 0, 0, 1, 1]], [[1, 0, 0, 0, 1, 0, 0, 0]], [[1, 1, 0, 0, 1, 1, 0, 0]], [[0, 0, 0, 0, 1, 1, 1, 1]]])
@@ -90,7 +87,7 @@ class PatternTaskParams(object):
     sequence_max_len = attrib(default=10, converter=int)
     memory_n = attrib(default=128, converter=int)
     memory_m = attrib(default=20, converter=int)
-    num_batches = attrib(default=100000, converter=int)
+    num_batches = attrib(default=60000, converter=int) # cange depending on what you want to test
     batch_size = attrib(default=1, converter=int)
     rmsprop_lr = attrib(default=1e-4, converter=float)
     rmsprop_momentum = attrib(default=0.9, converter=float)
