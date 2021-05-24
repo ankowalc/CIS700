@@ -19,7 +19,7 @@ I did edit a few of the .py's to update a few errors and to try to fix a zero te
 or the notebook pattern_plots.ipynb in the notebooks folder to see the plot for training loss or failure to understand implimenting the model. 
 
 
-###dependencies incude:
+### dependencies incude:
 from attr import attrs, attrib, Factory
 import torch
 from torch import nn
