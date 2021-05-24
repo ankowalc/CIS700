@@ -48,6 +48,8 @@ import pytest
 ### Below is the original author's copywrite notice allowing the code's use with alteration provided this is included. 
 this notice is also kept with their original readme in the pytorch_ntm_master folder
 
+Their original code worked to complete the copy task and copy-repeat tasks. After testing both tasks I added the patterndetect task using their architecture.
+
 
 BSD 3-Clause License
 
