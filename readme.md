@@ -7,7 +7,7 @@ netID: ankowalc
 Base code from gh repo clone loudinthecloud/pytorch-ntm https://github.com/loudinthecloud/pytorch-ntm
 by Guy Zana, Jules Gagnon-Marchand, and Mark Goldstein 
 
-Code used for this homework was a new task called patterndetect.py in the task folder
+Code used for this project was a new task called patterndetect.py in the task folder
 and notebook pattern_plots.ipynb in the notebooks folder.
 
 ## to run the code 
