@@ -154,7 +154,7 @@ def evaluate(net, criterion, X, Y):
     cost = torch.sum(torch.abs(y_out_binarized - Y.data))
 
     result = {
-        'loss': loss.data[0],
+        'loss': loss.data,#[0],
         'cost': cost / batch_size,
         'y_out': y_out,
         'y_out_binarized': y_out_binarized,
